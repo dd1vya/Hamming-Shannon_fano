@@ -14,8 +14,9 @@ Calculate the average code word length, entropy, variance, redundancy, and effic
 import math
 
 n = int(input("Enter number of samples: "))
-p  = [float(input(f"P[{i+1}]: ")) for i in range(n)]
-lk = [float(input(f"L[{i+1}]: ")) for i in range(n)]
+
+p  = [float(input(f"Enter the Probability of sample value {i+1}: ")) for i in range(n)]
+lk = [float(input(f"Enter the Length of sample value {i+1}: ")) for i in range(n)]
 
 # Average codeword length
 L = sum(p[i] * lk[i] for i in range(n))
@@ -45,8 +46,8 @@ print("Variance:", var)
 
 
 # Output
+<img width="1014" height="780" alt="image" src="https://github.com/user-attachments/assets/d8ddf512-1416-4847-aad2-e1c1c770226f" />
 
-![WhatsApp Image 2026-02-09 at 8 16 25 AM](https://github.com/user-attachments/assets/2e45ef1b-f72f-4848-b2d2-e97736241438)
 
 
 # Results:
