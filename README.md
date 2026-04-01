@@ -11,45 +11,32 @@ Calculate the average code word length, entropy, variance, redundancy, and effic
 
 # Program:
 ```
-#Huffman and Shannon-Fano coding
-import numpy as np
-import math 
-L  = 0
-hs = 0
-p = []
-lk = []
-n = int(input("Enter the number of Samples : "))
-for i in range (n): 
-    pr = float(input(f"Enter the probability of sample values {i + 1}: "))  
-    p.append(pr)
-for j in range (n): 
-    l = float(input(f"Enter the length of the sample values {j + 1}: "))  
-    lk.append(l)
-# Avg length of the code word
-for k in range (n):
-    Avg1 = p[k] * lk[k]
-    L = L + Avg1
+import math
+
+n = int(input("Enter number of samples: "))
+p  = [float(input(f"P[{i+1}]: ")) for i in range(n)]
+lk = [float(input(f"L[{i+1}]: ")) for i in range(n)]
+
+# Average codeword length
+L = sum(p[i] * lk[i] for i in range(n))
+
 # Entropy
-for k in range (n):
-    e = p[k] * math.log(1 / p[k], 2)
-    hs = hs + e
-hs = round(hs,3)
-# Efficiency
-eff =  hs / L
-eff = round(eff,3)
-# Redundancy 
-red =  round(1 - eff,3) 
+hs = sum(p[i] * math.log(1/p[i], 2) for i in range(n))
+hs = round(hs, 3)
+
+# Efficiency and Redundancy
+eff = round(hs / L, 3)
+red = round(1 - eff, 3)
+
 # Variance
-var = 0
-for k in range(n):
-    var1 = p[k] * (lk[k]-L)**2
-    var = var + var1
-var = round(var,3)
-print(f"Average Codeword Length is : {L}")
-print(f"Entropy is : {hs}")
-print(f"Efficiency is : {eff}")
-print(f"Redudancy is : {red}")
-print(f"Variance is : {var}")
+var = sum(p[i] * (lk[i] - L)**2 for i in range(n))
+var = round(var, 3)
+
+print("Average Codeword Length:", L)
+print("Entropy:", hs)
+print("Efficiency:", eff)
+print("Redundancy:", red)
+print("Variance:", var)
 ```
 # Calculation:
 <img width="515" height="646" alt="image" src="https://github.com/user-attachments/assets/2e635c42-d083-4741-b4ce-b87298c56557" />
